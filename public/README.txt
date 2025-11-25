@@ -1,0 +1,1 @@
+Add hero.jpg and avatars if you want visual assets.
