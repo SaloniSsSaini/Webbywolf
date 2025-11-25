@@ -1,30 +1,44 @@
-'use client'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ChatbotBubble() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed right-6 bottom-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* Floating Chat Button */}
+      <button
+        onClick={() => setOpen(true)}
+        className="w-14 h-14 bg-blue-600 text-white rounded-full shadow-xl flex items-center justify-center text-2xl"
+      >
+        💬
+      </button>
+
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-80 p-4 bg-white rounded-2xl shadow">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="w-80 p-4 bg-white rounded-2xl shadow-xl absolute bottom-20 right-0"
+          >
             <div className="flex justify-between items-center mb-3">
               <div className="font-semibold">Hello — I'm Saloni's Helper</div>
-              <button onClick={() => setOpen(false)}>✕</button>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-gray-500 hover:text-black"
+              >
+                ✕
+              </button>
             </div>
-            <div className="text-sm">This is a frontend demo chatbot for the assignment. You can simulate messages here.</div>
-            <div className="mt-3">
-              <input placeholder="Type a message" className="w-full border px-3 py-2 rounded" />
-            </div>
+
+            <p className="text-gray-600 text-sm">
+              How can I assist you today?
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <button onClick={() => setOpen(s => !s)} className="h-14 w-14 rounded-full bg-sky-500 text-white shadow-lg">
-        💬
-      </button>
     </div>
-  )
+  );
 }
